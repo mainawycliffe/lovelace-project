@@ -15,7 +15,7 @@ export function Pagination() {
   const [page, setPage] = useState(1); // pages are 1-indexed
   const totalPages = Math.ceil(members.length / PAGE_SIZE);
 
-  const start = page * PAGE_SIZE; // 🐞 wrong offset for a 1-indexed page
+  const start = (page - 1) * PAGE_SIZE; 
   const visible = members.slice(start, start + PAGE_SIZE);
 
   return (
