@@ -21,9 +21,11 @@ export function SortableTable() {
 
   function sortBy(nextKey: SortKey) {
     const nextAsc = nextKey === key ? !asc : true;
-    const sorted = members.sort((a, b) => {
+    const sorted = [...members].sort((a, b) => {
       const cmp =
-        nextKey === "points" ? a.points - b.points : a.name.localeCompare(b.name);
+        nextKey === "points"
+          ? a.points - b.points
+          : a.name.localeCompare(b.name);
       return nextAsc ? cmp : -cmp;
     });
     setRows([...sorted]);
@@ -37,12 +39,18 @@ export function SortableTable() {
         <thead>
           <tr className="border-b border-black/10 dark:border-white/10">
             <th className="py-2">
-              <button className="font-semibold hover:underline" onClick={() => sortBy("name")}>
+              <button
+                className="font-semibold hover:underline"
+                onClick={() => sortBy("name")}
+              >
                 Name
               </button>
             </th>
             <th className="py-2">
-              <button className="font-semibold hover:underline" onClick={() => sortBy("points")}>
+              <button
+                className="font-semibold hover:underline"
+                onClick={() => sortBy("points")}
+              >
                 Points
               </button>
             </th>
@@ -50,7 +58,10 @@ export function SortableTable() {
         </thead>
         <tbody>
           {rows.map((m) => (
-            <tr key={m.id} className="border-b border-black/5 dark:border-white/5">
+            <tr
+              key={m.id}
+              className="border-b border-black/5 dark:border-white/5"
+            >
               <td className="py-2">{m.name}</td>
               <td className="py-2">{m.points}</td>
             </tr>
