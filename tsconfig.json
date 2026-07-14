@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/app/features/calendar/Calendar.test.jsx", "src/app/features/calendar/page.jsx"  ],
   "exclude": ["node_modules"]
 }
