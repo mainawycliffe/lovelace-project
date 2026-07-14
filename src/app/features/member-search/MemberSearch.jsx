@@ -12,7 +12,10 @@ import { members } from "@/lib/mock-data";
 export function MemberSearch() {
   const [query, setQuery] = useState("");
 
-  const results = members.filter((m) => m.name.includes(query));
+    const results = members.filter((m) => 
+    m.name.toLowerCase().includes(query.toLowerCase())
+  );
+
 
   return (
     <div className="space-y-4">
