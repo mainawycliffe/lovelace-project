@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/app/features/give-kudos/GiveKudos.test.jsx"  ],
   "exclude": ["node_modules"]
 }
