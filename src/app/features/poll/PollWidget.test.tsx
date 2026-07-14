@@ -35,7 +35,9 @@ describe("PollWidget", () => {
     expect(screen.getByTestId("percent-b")).toHaveTextContent("25%");
   });
 
-  // 👇 BUG 2. Remove `.skip` and guard against divide-by-zero.
+  // 👇 BUG 2. Remove `.skip`. This may already pass at first — but once you fix
+  //    BUG 1 to divide by the total *votes*, a zero-vote poll divides by zero and
+  //    shows "NaN%". Add a guard so it stays "0%". Keep BOTH tests passing.
   it.skip("shows 0% (not NaN) when there are no votes", () => {
     render(<PollWidget poll={emptyPoll} />);
     expect(screen.getByTestId("percent-a")).toHaveTextContent("0%");

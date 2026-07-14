@@ -162,9 +162,9 @@ and `npm run build` all pass, and your feature page no longer shows the "Not bui
 
 ### #17 Poll Widget — 🔴 🔧
 **Files:** `src/app/features/poll/PollWidget.tsx`
-**Bugs:** (1) percentages use the number of *options* as the total instead of total *votes*; (2) a poll with zero votes shows `NaN%`.
-**Fix it:** compute each bar as `votes / (sum of all votes)`, rounded; show `0%` when there are no votes.
-**Done when:** remove `.skip` from both tests and they pass.
+**Bugs:** (1) percentages use the number of *options* as the total instead of total *votes*; (2) once you fix (1), a poll with zero votes divides by zero and shows `NaN%`.
+**Fix it:** compute each bar as `votes / (sum of all votes)`, rounded; guard so it shows `0%` when there are no votes.
+**Done when:** remove `.skip` from both tests and both pass. (Tip: fix bug 1 first, then watch bug 2's test start failing — that's the divide-by-zero to guard.)
 
 ### #18 Activity Feed — 🟡 🏗️
 **Files:** `src/app/features/activity-feed/`
