@@ -12,7 +12,7 @@ describe("Accordion", () => {
 
   // 👇 THE BUG. Remove `.skip`. Opening the first question must NOT reveal the
   //    second question's answer.
-  it.skip("only opens the clicked item", async () => {
+  it("only opens the clicked item", async () => {
     const user = userEvent.setup();
     render(<Accordion />);
 

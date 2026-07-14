@@ -1,0 +1,12 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/student/lovelace-project[39m
+
+ [31m❯[39m src/app/features/team-stats/TeamStats.test.tsx [2m([22m[2m2 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[32m 48[2mms[22m[39m
+[31m     [31m×[31m shows total members as 8[39m[32m 40[2mms[22m[39m
+[31m     [31m×[31m shows total points correctly[39m[32m 5[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[90m (2)[39m
+[2m   Start at [22m 18:20:47
+[2m   Duration [22m 876ms[2m (transform 79ms, setup 104ms, import 78ms, tests 48ms, environment 517ms)[22m
+
