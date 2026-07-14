@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card, Button } from "@/components/ui";
 import { polls } from "@/lib/mock-data";
-import type { Poll } from "@/lib/types";
+//import type { Poll } from "@/lib/types";
 
 // Vote in a poll and see the result as a percentage bar.
 //
@@ -12,12 +12,12 @@ import type { Poll } from "@/lib/types";
 //      votes, so the percentages don't add up to 100%.
 //   2. When a poll has zero votes, it shows "NaN%" instead of "0%".
 // Fix both so each bar shows votes / (total votes) as a whole percentage.
-export function PollWidget({ poll = polls[0] }: { poll?: Poll }) {
+export function PollWidget({ poll = polls[0] }) {
   const [options, setOptions] = useState(poll.options);
 
-  const total = options.length; // 🐞 should be the sum of all votes
+  const total = options.reduce((sum, o) => sum + o.votes, 0); // 🐞 should be the sum of all votes
 
-  function vote(id: string) {
+  function vote(id) {
     setOptions((prev) =>
       prev.map((o) => (o.id === id ? { ...o, votes: o.votes + 1 } : o)),
     );
@@ -28,7 +28,7 @@ export function PollWidget({ poll = polls[0] }: { poll?: Poll }) {
       <p className="font-semibold">{poll.question}</p>
       <ul className="space-y-3">
         {options.map((o) => {
-          const percent = Math.round((o.votes / total) * 100);
+          const percent = total === 0 ? 0: Math.round((o.votes / total) * 100);
           return (
             <li key={o.id}>
               <div className="mb-1 flex items-center justify-between text-sm">
