@@ -1,9 +1,45 @@
-import { describe, it } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import SkillsFilterPage from "./page";
+import { members } from "@/lib/mock-data";
 
-// Issue #6: Filter by Skill
-// TODO: replace these placeholders with real tests. See the reference test at
-// src/app/features/example-notes/NotesBoard.test.tsx for how.
-describe("Filter by Skill", () => {
-  it.todo("renders its main content");
-  it.todo("responds to the user");
+describe("SkillsFilterPage", () => {
+  it("renders all skill filter buttons and initial member directory entries", () => {
+    render(<SkillsFilterPage />);
+
+    expect(screen.getByText("Filter by Skill")).toBeInTheDocument();
+
+    const sampleSkill = members[0].skills[0];
+    expect(
+      screen.getByRole("button", { name: new RegExp(`^${sampleSkill}$`, "i") }),
+    ).toBeInTheDocument();
+  });
+
+  it("filters down the visible member list when clicking on a skill button", () => {
+    render(<SkillsFilterPage />);
+
+    const targetedSkill = members[0].skills[0];
+    const skillButton = screen.getByRole("button", {
+      name: new RegExp(`^${targetedSkill}$`, "i"),
+    });
+
+    fireEvent.click(skillButton);
+
+    const matchingMembers = members.filter((m) =>
+      m.skills.includes(targetedSkill),
+    );
+    const nonMatchingMembers = members.filter(
+      (m) => !m.skills.includes(targetedSkill),
+    );
+
+    matchingMembers.forEach((member) => {
+      expect(screen.getByText(member.name)).toBeInTheDocument();
+    });
+
+    if (nonMatchingMembers.length > 0) {
+      nonMatchingMembers.forEach((member) => {
+        expect(screen.queryByText(member.name)).not.toBeInTheDocument();
+      });
+    }
+  });
 });
