@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/app/features/poll/page.jsx", "src/app/features/poll/PollWidget.test.jsx", "src/app/features/poll/PollWidget.jsx"  ],
   "exclude": ["node_modules"]
 }
