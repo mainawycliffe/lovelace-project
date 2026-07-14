@@ -5,7 +5,6 @@ import TaskBoardPage from "./page";
 
 vi.mock("@/lib/useLocalStorage", () => ({
   useLocalStorage: <T,>(_key: string, initialValue: T) => {
-    // Uses real React state inside the test mock to trigger tree re-renders
     const [state, setState] = useState<T>(initialValue);
     return [state, setState];
   },
