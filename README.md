@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Team Hub
 
-## Getting Started
+A small internal team portal — a dashboard with 27 features (member directory, announcements,
+events, polls, and more). It's the codebase for a hands-on workshop where a cohort builds one
+product together, one issue each.
 
-First, run the development server:
+Built with **Next.js 16 (App Router) + TypeScript + Tailwind CSS 4**, tested with
+**Vitest + React Testing Library**.
+
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command              | What it does                          |
+| -------------------- | ------------------------------------- |
+| `npm run dev`        | Start the dev server                  |
+| `npm run build`      | Production build                      |
+| `npm run lint`       | ESLint                                |
+| `npm run typecheck`  | TypeScript, no emit                   |
+| `npm run test`       | Vitest in watch mode                  |
+| `npm run test:run`   | Vitest once (what CI runs)            |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## For contributors (the workshop)
 
-## Learn More
+1. Read **[CONTRIBUTING.md](./CONTRIBUTING.md)** — the team workflow and the no-AI rule.
+2. Pick your issue from **[ISSUES.md](./ISSUES.md)** (or the GitHub issues) and claim it.
+3. Study the reference feature in `src/app/features/example-notes/`.
+4. Build in your own folder, open a PR, get it green and reviewed, merge.
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/
+    layout.tsx                 # wraps every page in the shared AppShell
+    page.tsx                   # dashboard: the 27-feature grid
+    features/
+      example-notes/           # ⭐ reference implementation — study this
+      <slug>/                  # one folder per feature (one per issue)
+        page.tsx
+        <Component>.tsx
+        <Component>.test.tsx
+  components/
+    AppShell.tsx               # sidebar + layout (shared, do not edit)
+    FeatureStub.tsx            # the "Not built yet" placeholder
+    ui/                        # shared UI kit (Card, Button, Badge, Input, …)
+  lib/
+    types.ts                   # shared domain types (the "contract")
+    mock-data.ts               # the app's data (read-only)
+    features.ts                # the 27-feature registry (drives nav + dashboard)
+    useLocalStorage.ts         # shared persistence hook
+    cn.ts                      # className helper
+.github/workflows/ci.yml       # lint → typecheck → test → build on every PR
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## CI/CD
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every pull request runs **lint → typecheck → test → build** (`.github/workflows/ci.yml`).
+Turn on branch protection for `main` and mark the `verify` check as required so nothing merges
+red. See [`docs/MAINTAINER.md`](./docs/MAINTAINER.md) for setup.
