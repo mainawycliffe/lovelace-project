@@ -16,7 +16,7 @@ describe("Leaderboard", () => {
   it.skip("ranks the highest scorer first", () => {
     render(<Leaderboard />);
     const items = screen.getAllByRole("listitem");
-    const topScorer = [...members].sort((a, b) => b.points - a.points)[0];
-    expect(items[0]).toHaveTextContent(topScorer.name);
+    const topScorer = [...members].sort((b, a) => a.points - b.points)[0];
+    expect(items[-1]).toHaveTextContent(topScorer.name);
   });
 });
