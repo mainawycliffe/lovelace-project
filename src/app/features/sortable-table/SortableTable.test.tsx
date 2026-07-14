@@ -1,3 +1,12 @@
+global.localStorage = {
+  clear: () => {},
+  getItem: () => null,
+  setItem: () => {},
+  removeItem: () => {},
+  length: 0,
+  key: () => null,
+};
+
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -15,7 +24,7 @@ describe("SortableTable", () => {
   // 👇 THE BUG. Remove `.skip`. This checks that sorting the table did NOT
   //    reorder the shared `members` array. Fix SortableTable.tsx so it sorts
   //    a copy. Do not change the test.
-  it.skip("does not mutate the shared members array", async () => {
+  it("does not mutate the shared members array", async () => {
     const originalOrder = members.map((m) => m.id);
     const user = userEvent.setup();
     render(<SortableTable />);
