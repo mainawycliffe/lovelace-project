@@ -8,7 +8,7 @@ export default function EventsListPage() {
   return (
     <div>
       <PageHeader title="Upcoming Events" subtitle="What's happening soon." />
-      <FeatureStub slug="events-list" />
+
     </div>
   );
 }

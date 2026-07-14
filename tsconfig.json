@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/app/features/activity-feed/page.jsx", "src/app/features/activity-feed/ActivityFeed.test.jsx"  ],
   "exclude": ["node_modules"]
 }
