@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Card } from "@/components/ui";
+import { useLocalStorage } from "@/lib/useLocalStorage";
 
 const FAQ = [
   { q: "How do I claim an issue?", a: "Assign the GitHub issue to yourself, then start a branch." },
@@ -15,24 +16,33 @@ const FAQ = [
 // boolean controls every item. Track which item is open instead, so only the
 // clicked answer shows. Bonus: add `aria-expanded` to each question button.
 export function Accordion() {
-  const [open, setOpen] = useState(false);
+  const [openIndex, setOpen] = useState(false);
+
+  const toggleItem = (index) => {
+    setOpen((prevIndex) => (prevIndex === index ? null : index));
+  };
 
   return (
     <Card className="divide-y divide-black/10 dark:divide-white/10">
-      {FAQ.map((item, i) => (
-        <div key={i} className="py-2">
-          <button
-            className="flex w-full items-center justify-between text-left font-medium"
-            onClick={() => setOpen((o) => !o)}
-          >
-            {item.q}
-            <span aria-hidden>{open ? "−" : "+"}</span>
-          </button>
-          {open && (
-            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">{item.a}</p>
-          )}
-        </div>
-      ))}
+      {FAQ.map((item, i) => {
+        const isOpen = openIndex === i;
+
+        return (
+          <div key={i} className="py-2">
+            <button
+              className="flex w-full items-center justify-between text-left font-medium"
+              onClick={() => toggleItem(i)}
+              aria-expanded={openIndex}
+            >
+              {item.q}
+              <span aria-hidden>{isOpen ? "−" : "+"}</span>
+            </button>
+            {isOpen && (
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">{item.a}</p>
+            )}
+          </div>
+        );
+      })}
     </Card>
   );
 }

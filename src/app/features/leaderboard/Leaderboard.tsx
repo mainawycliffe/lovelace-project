@@ -9,7 +9,7 @@ import { members } from "@/lib/mock-data";
 // FEWEST points is shown at the top. Fix the sort so the highest scorer
 // is ranked #1.
 export function Leaderboard() {
-  const ranked = [...members].sort((a, b) => a.points - b.points);
+  const ranked = [...members].sort((b, a) => a.points - b.points);
 
   return (
     <ol className="space-y-2">
