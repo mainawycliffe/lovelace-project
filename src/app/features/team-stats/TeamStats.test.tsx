@@ -5,9 +5,9 @@ import TeamStatsPage from "./page";
 
 vi.mock("@/lib/mock-data", () => ({
   members: [
-    { id: "1", name: "Alice", team: "Engineering", points: 10 },
-    { id: "2", name: "Bob", team: "Design", points: 20 },
-    { id: "3", name: "Charlie", team: "Engineering", points: 30 },
+    { id: "1", name: "Umwali", team: "Engineering", points: 10 },
+    { id: "2", name: "Adeline", team: "Design", points: 20 },
+    { id: "3", name: "Angelique", team: "Engineering", points: 30 },
     { id: "4", name: "Dave", team: "Marketing", points: 40 },
     { id: "5", name: "Eve", team: "Design", points: 50 },
     { id: "6", name: "Frank", team: "Product", points: 60 },
