@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/app/features/accordion/page.jsx", "src/app/features/accordion/Accordion.jsx", "src/app/features/accordion/Accordion.test.jsx"  ],
   "exclude": ["node_modules"]
 }
