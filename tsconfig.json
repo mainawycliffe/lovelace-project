@@ -34,6 +34,8 @@
     "**/*.mts", 
     "src/app/features/member-directory/page.tsx",
     "**/*.mts",
+    "src/app/features/give-kudos/GiveKudos.test.jsx",
+    "**/*.mts",
     "src/app/features/poll/page.jsx",
     "src/app/features/poll/PollWidget.test.jsx",
     "src/app/features/poll/PollWidget.jsx",
